@@ -8,6 +8,7 @@ const router = useRouter()
 const navLinks = [
   { name: '首頁', to: '/' },
   { name: '專業領域', to: '/services' },
+  { name: '成功案例', to: '/cases' }, // 新增成功案例
   { name: '關於律師', to: '/about' },
   { name: '法律知識 Q&A', to: '/qa' },
   { name: '聯繫我們', to: '/contact' },
@@ -31,13 +32,11 @@ router.afterEach(collapseMenu)
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #111c4e; border-bottom: 2px solid #b8860b;">
     <div class="container">
-      <!-- Brand -->
       <RouterLink class="navbar-brand navbar-brand-logo d-flex align-items-center gap-2" to="/">
         <i class="bi bi-scales"></i>
         <span><span style="color: #b8860b;">修律</span>｜林仁修律師</span>
       </RouterLink>
 
-      <!-- Hamburger -->
       <button
         class="navbar-toggler border-0"
         type="button"
@@ -50,7 +49,6 @@ router.afterEach(collapseMenu)
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Links -->
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           <li v-for="link in navLinks" :key="link.to" class="nav-item">
@@ -81,7 +79,6 @@ router.afterEach(collapseMenu)
   color: rgba(255, 255, 255, 0.85) !important;
   border-radius: 0.4rem;
 }
-
 .nav-link:hover,
 .nav-link-active {
   color: #b8860b !important;

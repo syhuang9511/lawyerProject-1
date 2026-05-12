@@ -3,12 +3,23 @@ import { RouterLink } from 'vue-router'
 import lawyerProfile from '@/assets/lawyer-profile.avif'
 import lawyerOffice from '@/assets/lawyer-office.avif'
 
+// 依據需求 2, 3, 5, 6 更新服務項目
 const services = [
-  { icon: 'bi-person-check', title: '各類民事案件', desc: '債務糾紛、侵權損害、房屋租賃、婚姻家事，全程代理保障您的民事權益。' },
-  { icon: 'bi-shield-fill', title: '各類刑事案件', desc: '從偵查到審判全程陪同，提供最有力的辯護策略，守護您的自由與清白。' },
+  { icon: 'bi-person-check', title: '各類民事案件', desc: '債務糾紛、侵權損害、房屋租賃、勞資爭議，全程代理保障您的民事權益。' },
+  { icon: 'bi-people-fill', title: '各類家事案件', desc: '離婚、贍養費、子女監護權、收養、保護令等，細心處理您的家庭爭議。' },
+  { icon: 'bi-shield-fill', title: '各類刑事案件', desc: '處理竊盜、賭博、恐嚇取財案件，提供最有力的辯護策略，守護您的自由與清白。' },
   { icon: 'bi-building', title: '警局陪偵', desc: '收到傳票或遭警方約談，第一時間陪同到場，確保您的陳述不因緊張而失誤。' },
-  { icon: 'bi-file-earmark-text', title: '非訟事件', desc: '遺產繼承、公司登記、本票裁定、支付命令等非訴訟程序，快速有效處理。' },
+  { icon: 'bi-file-earmark-text', title: '非訟事件', desc: '遺產繼承、代擬遺囑、本票裁定、支付命令等非訟程序，快速有效處理。' },
   { icon: 'bi-briefcase-fill', title: '法律顧問', desc: '提供企業及個人長期法律諮詢，合約審閱、風險評估，預防勝於治療。' },
+]
+
+// 依據需求 7 更新經歷清單
+const experiences = [
+  '伯衡法律事務所 受僱律師',
+  '吉訟法律事務所 實習律師',
+  '萬海航運股份有限公司 法務風險管理師',
+  '臺灣宜蘭地方法院 民事庭書記官',
+  '華泓國際運輸股份有限公司 法務專員'
 ]
 
 const whyUs = [
@@ -20,7 +31,6 @@ const whyUs = [
 </script>
 
 <template>
-  <!-- ── Hero ── -->
   <section class="hero-section">
     <div class="container position-relative">
       <div class="row align-items-center py-5" style="min-height:88vh;">
@@ -43,20 +53,12 @@ const whyUs = [
             <span style="color:#b8860b;">您最堅實的法律後盾</span>
           </h1>
           <p
-            class="lead mb-2"
-            style="color:rgba(255,255,255,.9);max-width:540px;font-weight:500;"
+            class="lead mb-4"
+            style="color:rgba(255,255,255,.9);max-width:600px;font-weight:500; line-height: 1.6;"
             data-aos="fade-up"
             data-aos-delay="180"
           >
-            精準法律判斷，穩健風險控管，
-          </p>
-          <p
-            class="lead mb-4"
-            style="color:rgba(255,255,255,.75);max-width:540px;"
-            data-aos="fade-up"
-            data-aos-delay="220"
-          >
-            為您打造最有利的解決方案。
+            林仁修律師致力於清晰、直接的法律服務，幫助每一位面對法律問題的當事人找到最有利的出路。
           </p>
           <div
             class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start"
@@ -84,40 +86,48 @@ const whyUs = [
     </div>
   </section>
 
-  <!-- ── Services Overview ── -->
   <section class="py-5 bg-light-custom">
     <div class="container">
-      <div class="text-center mb-5" data-aos="fade-up">
-        <h2 class="fw-bold" style="color:#1a2a6c;">服務項目</h2>
-        <div class="divider-gold"></div>
-        <p class="text-muted">針對不同法律需求，提供量身訂製的專業解決方案</p>
-      </div>
-      <div class="row g-4 justify-content-center">
-        <div
-          v-for="(svc, i) in services"
-          :key="svc.title"
-          class="col-sm-6 col-lg-4"
-          data-aos="fade-up"
-          :data-aos-delay="i * 80"
-        >
-          <div class="card service-card p-4 text-center h-100">
-            <i :class="['bi', svc.icon, 'service-icon', 'mb-3']"></i>
-            <h5 class="fw-bold mb-2" style="color:#1a2a6c;">{{ svc.title }}</h5>
-            <p class="text-muted small mb-0">{{ svc.desc }}</p>
+      <div class="row g-5">
+        <div class="col-lg-4" data-aos="fade-right">
+          <h3 class="fw-bold mb-4" style="color:#1a2a6c; border-left: 5px solid #b8860b; padding-left: 15px;">經歷</h3>
+          <ul class="list-unstyled">
+            <li v-for="exp in experiences" :key="exp" class="mb-3 d-flex align-items-start">
+              <i class="bi bi-check2-circle me-2 mt-1" style="color:#b8860b;"></i>
+              <span class="text-secondary fw-medium">{{ exp }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-8" data-aos="fade-left">
+          <div class="text-center text-lg-start mb-4">
+            <h2 class="fw-bold" style="color:#1a2a6c;">服務項目</h2>
+            <p class="text-muted">針對不同法律需求，提供量身訂製的專業解決方案</p>
+          </div>
+          <div class="row g-3">
+            <div
+              v-for="(svc, i) in services"
+              :key="svc.title"
+              class="col-sm-6"
+            >
+              <div class="card service-card p-3 h-100 border-0 shadow-sm">
+                <div class="d-flex align-items-center mb-2">
+                    <i :class="['bi', svc.icon, 'fs-4 me-2']" style="color:#b8860b;"></i>
+                    <h6 class="fw-bold mb-0" style="color:#1a2a6c;">{{ svc.title }}</h6>
+                </div>
+                <p class="text-muted small mb-0">{{ svc.desc }}</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="400">
-        <RouterLink to="/services" class="btn btn-outline-gold">查看完整服務說明 →</RouterLink>
       </div>
     </div>
   </section>
 
-  <!-- ── Why Choose Us ── -->
   <section class="py-5">
     <div class="container">
       <div class="row align-items-center g-5">
-        <div class="col-lg-5" data-aos="fade-right">
+        <div class="col-lg-5 d-none d-lg-block" data-aos="fade-right">
           <div class="rounded-4 shadow overflow-hidden" style="aspect-ratio:3/4;">
             <img
               :src="lawyerOffice"
@@ -150,7 +160,6 @@ const whyUs = [
     </div>
   </section>
 
-  <!-- ── Contact Quick ── -->
   <section class="py-5 bg-light-custom" data-aos="fade-up">
     <div class="container">
       <div class="text-center mb-4">
@@ -158,40 +167,45 @@ const whyUs = [
         <div class="divider-gold"></div>
       </div>
       <div class="row g-4 justify-content-center">
-        <div class="col-sm-6 col-md-4" data-aos="zoom-in" data-aos-delay="0">
+        <div class="col-sm-6 col-md-4">
           <a href="tel:0976390669" class="card border-0 shadow-sm p-4 text-center text-decoration-none h-100 service-card">
             <i class="bi bi-telephone-fill service-icon mb-3"></i>
             <h6 class="fw-bold" style="color:#1a2a6c;">電話諮詢</h6>
             <p class="small text-muted mb-0">0976-390-669</p>
           </a>
         </div>
-        <div class="col-sm-6 col-md-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-sm-6 col-md-4">
           <a href="https://line.me/R/ti/p/@xiu_law" target="_blank" class="card border-0 shadow-sm p-4 text-center text-decoration-none h-100 service-card">
             <i class="bi bi-chat-dots-fill service-icon mb-3"></i>
             <h6 class="fw-bold" style="color:#1a2a6c;">LINE 諮詢</h6>
             <p class="small text-muted mb-0">@xiu_law</p>
           </a>
         </div>
-        <div class="col-sm-6 col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="col-sm-6 col-md-4">
           <a href="mailto:lawyer.jasonlin@gmail.com" class="card border-0 shadow-sm p-4 text-center text-decoration-none h-100 service-card">
             <i class="bi bi-envelope-fill service-icon mb-3"></i>
             <h6 class="fw-bold" style="color:#1a2a6c;">Email 諮詢</h6>
-            <p class="small text-muted mb-0">lawyer.jasonlin@gmail.com</p>
+            <p class="small text-muted mb-0" style="word-break: break-all;">lawyer.jasonlin@gmail.com</p>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── CTA Banner ── -->
   <section class="bg-navy py-5 text-center" data-aos="fade-up">
     <div class="container">
       <h3 class="text-white fw-bold mb-3">面臨法律困境？立即取得專業建議</h3>
-      <p style="color:rgba(255,255,255,.75);" class="mb-1">Precise legal judgment, prudent risk management,</p>
-      <p style="color:rgba(255,255,255,.75);" class="mb-4">delivering the most advantageous solutions for you.</p>
+      <p style="color:rgba(255,255,255,.75);" class="mb-4">為您打造最有利的解決方案。</p>
       <RouterLink to="/contact" class="btn btn-gold btn-lg px-5">
         <i class="bi bi-send me-2"></i>預約諮詢
       </RouterLink>
     </div>
   </section>
 </template>
+
+<style scoped>
+/* 確保經歷清單文字不會過於擁擠 */
+ul li {
+  line-height: 1.4;
+}
+</style>
